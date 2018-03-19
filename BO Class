@@ -1,0 +1,151 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace orderBO
+{
+    public class order
+    {
+        string ordername;
+        string cusname;
+        string cusmail;
+        long cusno;
+        int quantity;
+        int orderid;
+        double amount;
+        DateTime order_date;
+        DateTime manf_date;
+
+
+        public order(string ordername, string cusname, string cusmail, long cusno, int quantity)
+        {
+            this.ordername = ordername;
+            this.cusname = cusname;
+            this.cusmail = cusmail;
+            this.cusno = cusno;
+            this.quantity = quantity;
+        }
+
+        public order()
+        { }
+
+        public string Ordername
+        {
+            get
+            {
+                return ordername;
+            }
+
+            set
+            {
+                ordername = value;
+            }
+        }
+
+        public string Cusname
+        {
+            get
+            {
+                return cusname;
+            }
+
+            set
+            {
+                cusname = value;
+            }
+        }
+
+        public string Cusmail
+        {
+            get
+            {
+                return cusmail;
+            }
+
+            set
+            {
+                cusmail = value;
+            }
+        }
+
+        public long Cusno
+        {
+            get
+            {
+                return cusno;
+            }
+
+            set
+            {
+                cusno = value;
+            }
+        }
+
+        public int Quantity
+        {
+            get
+            {
+                return quantity;
+            }
+
+            set
+            {
+                quantity = value;
+            }
+        }
+
+        public int Orderid
+        {
+            get
+            {
+                return orderid;
+            }
+
+            set
+            {
+                orderid = value;
+            }
+        }
+
+        public double Amount
+        {
+            get
+            {
+                return amount;
+            }
+
+            set
+            {
+                amount = value;
+            }
+        }
+
+        public DateTime Order_date
+        {
+            get
+            {
+                return order_date;
+            }
+
+            set
+            {
+                order_date = value;
+            }
+        }
+
+        public DateTime Manf_date
+        {
+            get
+            {
+                return manf_date;
+            }
+
+            set
+            {
+                manf_date = value;
+            }
+        }
+    }
+}
