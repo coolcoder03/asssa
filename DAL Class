@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using orderBO;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace orderoperationDAL
+{
+    public class operation
+    {
+
+        public int Place_order(order obj, out double amt )
+        {
+            int oid = 0;
+            //int rowaffect = 0;
+            //double 
+            amt = 0;
+            
+            SqlConnection con = new SqlConnection("Server=intvmsql01; user id= pj01tms55_1718; database=db01tms55_1718; password=tcstvm");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_insert_z", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@id", 0);
+            cmd.Parameters.AddWithValue("@Iname", obj.Ordername);
+            cmd.Parameters.AddWithValue("@qneed", obj.Quantity);
+            cmd.Parameters.AddWithValue("@Cus_name", obj.Cusname);
+            cmd.Parameters.AddWithValue("@Cus_con", obj.Cusno);
+            cmd.Parameters.AddWithValue("@Cus_mail", obj.Cusmail);
+            SqlDataReader reader_z = cmd.ExecuteReader();
+
+            while (reader_z.Read())
+            {
+                //order obj1 = new order();
+                oid = Convert.ToInt32(reader_z["OrderID"]);
+
+                amt = Convert.ToDouble(reader_z["totalprice"]);
+
+               // olist.Add(obj1);
+
+            }
+            //if (obj.Ordername.Equals("Power Bank"))
+            //{
+            //    amt = obj.Quantity * 5500;
+            //    cmd.Parameters.AddWithValue("@price", amt);
+            //}
+            //else
+            //      if (obj.Ordername.Equals("Memory Card"))
+            //{
+            //    amt = obj.Quantity * 2000;
+            //    cmd.Parameters.AddWithValue("@price", amt);
+            //}
+            //else
+            //      if (obj.Ordername.Equals("Wallet"))
+            //{
+            //    amt = obj.Quantity * 1000;
+            //    cmd.Parameters.AddWithValue("@price", amt);
+            //}
+            //else
+            //      if (obj.Ordername.Equals("Laptop "))
+            //{
+            //    amt = obj.Quantity * 35000;
+            //    cmd.Parameters.AddWithValue("@price", amt);
+            //}
+
+            //cmd.Parameters["@id"].Direction = ParameterDirection.Output;
+            //rowaffect = cmd.ExecuteNonQuery();
+            //oid = Convert.ToInt32(cmd.Parameters["@id"].Value);
+
+
+                     return oid;
+        }
+
+        public  List<order> View_all()
+        {
+            List<order> olist = new List<order>();
+
+            SqlConnection con = new SqlConnection("Server=intvmsql01; user id= pj01tms55_1718; database=db01tms55_1718; password=tcstvm");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_view_z", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader_z = cmd.ExecuteReader();
+            while(reader_z.Read())
+            {
+                order obj = new order();
+                obj.Orderid = Convert.ToInt32(reader_z["OrderID"]);
+                obj.Ordername = reader_z["ItemName"].ToString();
+                obj.Cusno = Convert.ToInt64(reader_z["CustomerContact"]);
+                obj.Cusname = reader_z["CustomerName"].ToString();
+                obj.Quantity = Convert.ToInt32(reader_z["QuantityNeeded"]);
+                obj.Cusmail = reader_z["CustomerEmail"].ToString();
+                obj.Amount = Convert.ToDouble(reader_z["totalprice"]);
+                obj.Order_date= Convert.ToDateTime(reader_z["Orderdate"]);
+                obj.Manf_date = Convert.ToDateTime(reader_z["Manufacturing_Date"]);
+
+                olist.Add(obj);
+        
+            }
+
+            return olist;
+        }
+
+        public int delete(int id)
+        {
+
+            int rowaffected = 0;
+
+            SqlConnection con = new SqlConnection("Server=intvmsql01; user id= pj01tms55_1718; database=db01tms55_1718; password=tcstvm");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_delz", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+           
+            cmd.Parameters.AddWithValue("@id", id);
+            try
+            {
+                rowaffected = cmd.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+
+            }
+            
+            return rowaffected;
+        }
+    }
+}
