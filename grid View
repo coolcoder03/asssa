@@ -1,0 +1,35 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="View_order.aspx.cs" Inherits="asssessment_2.View_order" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <p>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+        <asp:Label ID="Lbluser1" runat="server" Text="Label"></asp:Label>
+    </p>
+    <p>
+        &nbsp;</p>
+    <p>
+        <br />
+        <asp:GridView ID="Gv" runat="server" OnRowCommand="Gv_RowCommand" AutoGenerateColumns="False" >
+            <Columns>
+                <asp:BoundField DataField="Orderid" HeaderText="Order ID" />
+                <asp:BoundField DataField="Ordername" HeaderText="Item Name" SortExpression="Ordername" />
+                <asp:BoundField DataField="Cusname" HeaderText="Customer Name" SortExpression="Cusname" />
+                <asp:BoundField DataField="Cusno" HeaderText="Customer Contact" SortExpression="Cusno" />
+                <asp:BoundField DataField="Cusmail" HeaderText="Customer Mail" SortExpression="Cusmail" />
+                <asp:BoundField DataField="Quantity" HeaderText="Quantity " SortExpression="Quantity" />
+                <asp:BoundField DataField="Amount" HeaderText="Total Price" SortExpression="Amount" />
+                <asp:BoundField DataField="Order_date" HeaderText="Order Date" SortExpression="Order_date" />
+                <asp:BoundField DataField="Manf_date" HeaderText="Manufacturing Date" SortExpression="Manf_date" />
+                <asp:TemplateField HeaderText="Delete Order">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="Linkdel" runat="server" CommandArgument='<%#Eval("Orderid") %>' CommandName="del">Delete</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </p>
+</asp:Content>
