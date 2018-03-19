@@ -1,0 +1,50 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="asssessment_2.login" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 178px;
+        }
+        .auto-style3 {
+            width: 298px;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <p>
+        <br />
+    </p>
+    <table class="auto-style1">
+        <tr>
+            <td class="auto-style2">
+                <asp:Label ID="Lbluser" runat="server" Text="User Name"></asp:Label>
+            </td>
+            <td class="auto-style3">
+                <asp:TextBox ID="Txtuser" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="valid_user" runat="server" ControlToValidate="Txtuser" ErrorMessage="Please Enter User Name">*</asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style2">
+                <asp:Label ID="Lblpwd" runat="server" Text="Password"></asp:Label>
+            </td>
+            <td class="auto-style3">
+                <asp:TextBox ID="Txtpwd" runat="server" TextMode="Password"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="valid_pwd" runat="server" ControlToValidate="Txtpwd" ErrorMessage="Please Enter password">*</asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style3">
+                <asp:Button ID="bttnlgn" runat="server" OnClick="Button1_Click" Text="Login" />
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+</asp:Content>
